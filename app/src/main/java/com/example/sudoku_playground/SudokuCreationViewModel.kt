@@ -11,12 +11,14 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 private const val BLOCK_WIDTH = 3
+private const val BLOCK_SIZE = BLOCK_WIDTH * BLOCK_WIDTH
+private const val GRID_WIDTH = 9
 
 class SudokuCreationViewModel(private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO) :
     ViewModel() {
 
     private val blocks: MutableMap<Pair<Int, Int>, Array<IntArray>> = mutableMapOf()
-    private val grid: Array<IntArray> = Array(9) { IntArray(9) }
+    private val grid: Array<IntArray> = Array(GRID_WIDTH) { IntArray(GRID_WIDTH) }
 
     private val _digitUpdate: MutableSharedFlow<PositionalDigitStatus> = MutableSharedFlow()
     val digitUpdate: Flow<PositionalDigitStatus> = _digitUpdate.asSharedFlow()
@@ -63,11 +65,11 @@ class SudokuCreationViewModel(private val coroutineDispatcher: CoroutineDispatch
     }
 
     private fun generateBlock(): Array<IntArray> {
-        val block: Array<IntArray> = Array(3) { IntArray(3) }
+        val block: Array<IntArray> = Array(BLOCK_WIDTH) { IntArray(BLOCK_WIDTH) }
         // generate a set of 9 numbers from 1 to 9
-        val numbers = (1..9).toMutableList()
-        for (i in 0 until 3) {
-            for (j in 0 until 3) {
+        val numbers = (1..BLOCK_SIZE).toMutableList()
+        for (i in 0 until BLOCK_WIDTH) {
+            for (j in 0 until BLOCK_WIDTH) {
                 // generate a random number from the set
                 val randomValue = numbers.random()
 
