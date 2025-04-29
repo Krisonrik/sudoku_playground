@@ -15,9 +15,7 @@ class MainActivity : AppCompatActivity() {
             Timber.plant(Timber.DebugTree())
         }
         enableEdgeToEdge()
-        ActivityMainBinding.inflate(layoutInflater).let { binding ->
-            setContentView(binding.root)
-        }
+        setContentView(ActivityMainBinding.inflate(layoutInflater).root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

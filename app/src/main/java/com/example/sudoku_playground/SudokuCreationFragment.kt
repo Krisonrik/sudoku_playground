@@ -26,7 +26,7 @@ class SudokuCreationFragment : Fragment(R.layout.fragment_sudoku_creation) {
                         "id",
                         it.packageName
                     )
-                    Timber.d("resId: $resId, mainBlockId: ${state.mainBlockId}, subIndex: ${state.subIndex}")
+//                    Timber.d("resId: $resId, mainBlockId: ${state.mainBlockId}, subIndex: ${state.subIndex}")
                     view.findViewById<TextView>(resId).text = state.digit.toString()
                 }
 
